@@ -25,7 +25,7 @@ const MoviesPage = () => {
   };
 
   useEffect(() => {
-    if (query === "") return;
+    if (!query) return;
 
     const fetchData = async () => {
       setIsLoading(true);
