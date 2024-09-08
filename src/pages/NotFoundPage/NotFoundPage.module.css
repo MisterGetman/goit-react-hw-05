@@ -1,0 +1,14 @@
+.notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 128px;
+  text-align: center;
+}
+
+.notFoundContainer p {
+  font-size: 36px;
+}
+
+.notFoundContainer a {
+  font-size: 18px;
+}
