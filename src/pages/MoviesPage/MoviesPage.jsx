@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
-import { useLocation, useSearchParams, Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import { getMovies } from "../../api/api";
-import css from "./MoviesPage.module.css";
+import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
   const [moviesList, setMoviesList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { pathname, search } = useLocation();
   const [query, setQuery] = useState(searchParams.get("query"));
 
   const handleSubmit = (e) => {
@@ -62,17 +61,7 @@ const MoviesPage = () => {
         />
         <button type="submit">Search</button>
       </form>
-      <div className={css.moviesList}>
-        {moviesList.map((movie) => (
-          <Link
-            key={movie.id}
-            to={`/movies/${movie.id}`}
-            state={{ from: `${pathname}${search}` }}
-          >
-            {movie.title}
-          </Link>
-        ))}
-      </div>
+      <MovieList movies={moviesList} />
     </div>
   );
 };
